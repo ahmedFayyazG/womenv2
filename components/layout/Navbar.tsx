@@ -42,7 +42,7 @@ export default function Navbar() {
               style={{ fontFamily: 'var(--font-quicksand)' }}
             >
               {link.label}
-              {link.dropdown && <ChevronDown size={12} />}
+              {('dropdown' in link) && <ChevronDown size={12} />}
             </Link>
           ))}
         </nav>
@@ -72,7 +72,7 @@ export default function Navbar() {
           {NAV_LINKS.map((link) => (
             <Link key={link.href} href={link.href} className="flex items-center justify-between py-3 border-b border-gray-50 text-[14px] font-semibold text-[#2D2A35] hover:text-[#E5097F]" onClick={() => setOpen(false)}>
               {link.label}
-              {link.dropdown && <ChevronDown size={14} />}
+              {('dropdown' in link) && <ChevronDown size={14} />}
             </Link>
           ))}
           <Link href="/donate" className="mt-4 flex items-center justify-center gap-2 bg-[#E5097F] text-white text-xs font-bold uppercase tracking-wider rounded-full px-6 py-3 hover:bg-[#c4076d]" onClick={() => setOpen(false)}>
