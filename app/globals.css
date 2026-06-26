@@ -1,26 +1,130 @@
 @import "tailwindcss";
+@source "..";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@font-face {
+  font-family: 'Clash Grotesk';
+  src: url('/fonts/ClashGrotesk-Variable.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Clash Grotesk';
+  src: url('/fonts/ClashGrotesk-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Clash Grotesk';
+  src: url('/fonts/ClashGrotesk-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Clash Grotesk';
+  src: url('/fonts/ClashGrotesk-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Clash Grotesk';
+  src: url('/fonts/ClashGrotesk-Semibold.woff2') format('woff2');
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Clash Grotesk';
+  src: url('/fonts/ClashGrotesk-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-display: swap;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-quicksand: 'Clash Grotesk', sans-serif;
+  --font-nunito: 'Clash Grotesk', sans-serif;
+  --color-magenta: #E5097F;
+  --color-magenta-dark: #c4076d;
+  --color-cyan: #35C3D6;
+  --color-cyan-dark: #2BA8BA;
+  --color-purple: #5B2D8E;
+  --color-purple-deep: #3D1A66;
+  --color-gold: #D9A521;
+  --color-cream: #F5F1EA;
+  --color-dark: #20242E;
+  --color-footer: #1C2128;
+  --color-heading: #2D2A35;
+  --color-body: #5A5663;
+  --color-topbar: #0e1117;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  --font-quicksand: 'Clash Grotesk', sans-serif;
+  --font-nunito: 'Clash Grotesk', sans-serif;
+  --font-amatic: 'Clash Grotesk', sans-serif;
+}
+
+*, *::before, *::after {
+  font-family: inherit;
+}
+
+* {
+  font-family: 'Clash Grotesk', sans-serif !important;
+  font-weight: 500 !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 500 !important;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Clash Grotesk', var(--font-nunito, 'Nunito'), sans-serif;
+  font-weight: 300;
+  color: #5A5663;
+  background: white;
+  overflow-x: hidden;
+}
+
+/* DO NOT add * { padding: 0; margin: 0 } here — Tailwind preflight handles it inside @layer base */
+
+.section-shell {
+  width: min(100% - 2rem, 1280px);
+  margin-inline: auto;
+}
+@media (min-width: 768px) {
+  .section-shell { width: min(100% - 3rem, 1280px); }
+}
+@media (min-width: 1024px) {
+  .section-shell { width: min(100% - 5rem, 1280px); }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Clash Grotesk', var(--font-quicksand, 'Quicksand'), sans-serif;
+  color: #2D2A35;
+}
+
+.paper-texture { background-color: #F5F1EA; }
+
+@keyframes float-up {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-float { animation: float-up 3s ease-in-out infinite; }
+.animate-marquee { animation: marquee 35s linear infinite; }
+.progress-fill { transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1); }
+
+:focus-visible { outline: 2px solid #35C3D6; outline-offset: 2px; }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #f1f1f1; }
+::-webkit-scrollbar-thumb { background: #E5097F; border-radius: 3px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
