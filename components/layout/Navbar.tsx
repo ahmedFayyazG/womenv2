@@ -1,12 +1,14 @@
 'use client';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Menu, X, ChevronDown, Search } from 'lucide-react';
 import { NAV_LINKS } from '@/lib/constants';
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 10);
@@ -32,19 +34,23 @@ export default function Navbar() {
 
         {/* Desktop Nav */}
         <nav className="hidden lg:flex items-center gap-0">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`flex items-center gap-1 px-4 py-2 text-[13px] font-semibold transition-colors whitespace-nowrap ${
-                link.active ? 'text-[#35C3D6] border-b-2 border-[#35C3D6]' : 'text-[#2D2A35] hover:text-[#E5097F]'
-              }`}
-              style={{ fontFamily: 'var(--font-quicksand)' }}
-            >
-              {link.label}
-              {('dropdown' in link) && <ChevronDown size={12} />}
-            </Link>
-          ))}
+          {NAV_LINKS.map((link) => {
+            const active = pathname === link.href;
+
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`flex items-center gap-1 px-3 py-2 text-[13px] font-semibold transition-colors whitespace-nowrap ${
+                  active ? 'text-[#35C3D6] border-b-2 border-[#35C3D6]' : 'text-[#2D2A35] hover:text-[#E5097F]'
+                }`}
+                style={{ fontFamily: 'var(--font-quicksand)' }}
+              >
+                {link.label}
+                {('dropdown' in link) && <ChevronDown size={12} />}
+              </Link>
+            );
+          })}
         </nav>
 
         {/* Right: search + donate */}
@@ -69,12 +75,23 @@ export default function Navbar() {
       {/* Mobile menu */}
       {open && (
         <div className="lg:hidden bg-white border-t border-gray-100 px-4 pb-4">
-          {NAV_LINKS.map((link) => (
-            <Link key={link.href} href={link.href} className="flex items-center justify-between py-3 border-b border-gray-50 text-[14px] font-semibold text-[#2D2A35] hover:text-[#E5097F]" onClick={() => setOpen(false)}>
-              {link.label}
-              {('dropdown' in link) && <ChevronDown size={14} />}
-            </Link>
-          ))}
+          {NAV_LINKS.map((link) => {
+            const active = pathname === link.href;
+
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`flex items-center justify-between py-3 border-b border-gray-50 text-[14px] font-semibold hover:text-[#E5097F] ${
+                  active ? 'text-[#35C3D6]' : 'text-[#2D2A35]'
+                }`}
+                onClick={() => setOpen(false)}
+              >
+                {link.label}
+                {('dropdown' in link) && <ChevronDown size={14} />}
+              </Link>
+            );
+          })}
           <Link href="/donate" className="mt-4 flex items-center justify-center gap-2 bg-[#E5097F] text-white text-xs font-bold uppercase tracking-wider rounded-full px-6 py-3 hover:bg-[#c4076d]" onClick={() => setOpen(false)}>
             DONATE NOW
           </Link>
