@@ -1,11 +1,7 @@
 import type { Metadata } from 'next';
 import { Quicksand, Nunito, Amatic_SC } from 'next/font/google';
 import './globals.css';
-import TopBar from '@/components/layout/TopBar';
-import Navbar from '@/components/layout/Navbar';
-import Footer from '@/components/layout/Footer';
-import StayConnected from '@/components/layout/StayConnected';
-import ScrollTop from '@/components/layout/ScrollTop';
+import SiteChrome from '@/components/layout/SiteChrome';
 
 const quicksand = Quicksand({
   subsets: ['latin'],
@@ -46,12 +42,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${quicksand.variable} ${nunito.variable} ${amaticSC.variable}`}>
       <body className="antialiased">
-        <TopBar />
-        <Navbar />
-        <main id="main-content">{children}</main>
-        <Footer />
-        <StayConnected />
-        <ScrollTop />
+        <SiteChrome>{children}</SiteChrome>
       </body>
     </html>
   );

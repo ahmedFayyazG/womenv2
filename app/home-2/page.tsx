@@ -1,152 +1,270 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, CalendarDays, GraduationCap, HeartHandshake, MessageCircleHeart, UsersRound } from 'lucide-react';
-import AwardStrip from '@/components/sections/AwardStrip';
-import BlogSection from '@/components/sections/BlogSection';
-import CommunityCta from '@/components/sections/CommunityCta';
-import PartnersBar from '@/components/sections/PartnersBar';
-import TestimonialsSlider from '@/components/sections/TestimonialsSlider';
-import Button from '@/components/ui/Button';
-import Eyebrow from '@/components/ui/Eyebrow';
-import { SERVICES } from '@/lib/constants';
+import { ArrowRight, Asterisk, CalendarDays, Headphones, Sparkles } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: "Home 2 - Women's Voices",
   description:
-    "An alternate Women's Voices homepage focused on community support, learning, wellbeing, and leadership for women in Manchester.",
+    "A bold alternate Women's Voices homepage inspired by a colorful coaching-style long-form landing page.",
 };
 
-const impactStats = [
-  { value: '500+', label: 'women supported' },
-  { value: '12+', label: 'years serving communities' },
-  { value: '20+', label: 'weekly activities' },
+const stats = [
+  {
+    value: '70%',
+    body: 'of women we support arrive carrying isolation, pressure, or uncertainty.',
+    color: '#4868F6',
+  },
+  {
+    value: '100%',
+    body: 'of our groups are designed to help women feel seen, safe, and heard.',
+    color: '#AD90F7',
+  },
+  {
+    value: '12+',
+    body: 'years of standing beside women across Manchester communities.',
+    color: '#FF8F64',
+  },
+  {
+    value: '4+',
+    body: 'core pathways covering learning, wellbeing, skills, and leadership.',
+    color: '#DC65D6',
+  },
 ];
 
-const featureCards = [
+const signs = [
   {
-    title: 'Safe spaces to belong',
-    body: 'Women connect through welcoming groups, peer support, creative sessions, and wellbeing activities.',
-    icon: HeartHandshake,
+    title: 'Too much on your shoulders',
+    items: [
+      'You are holding family, work, language, and appointments together.',
+      'You keep showing up even when your own needs come last.',
+      'You want a place where you can breathe and be understood.',
+    ],
   },
   {
-    title: 'Skills for everyday life',
-    body: 'Accessible ESOL, digital skills, employability support, and confidence-building sessions.',
-    icon: GraduationCap,
+    title: 'Feeling overlooked',
+    items: [
+      'You have skills, ideas, and hopes but need the right support.',
+      'You want to learn without judgement or pressure.',
+      'You are ready for friendship, confidence, and practical next steps.',
+    ],
   },
   {
-    title: 'Voices that influence change',
-    body: 'Leadership, advocacy, and mentoring help women shape stronger families and communities.',
-    icon: MessageCircleHeart,
+    title: 'Ready for change',
+    items: [
+      'You want to speak up for yourself and your community.',
+      'You need support that respects your culture and lived experience.',
+      'You are ready to move forward with women beside you.',
+    ],
   },
 ];
+
+const programmes = [
+  'ESOL and everyday English',
+  'Wellbeing circles and peer support',
+  'Employability and digital confidence',
+  'Leadership, advocacy, and mentoring',
+];
+
+function PortraitCard({ className = '' }: { className?: string }) {
+  return (
+    <div className={`relative overflow-hidden rounded-[2px] bg-[#BDF8F1] shadow-[0_18px_38px_rgba(30,42,54,0.18)] ${className}`}>
+      <Image
+        src="/images/home-2-portrait.png"
+        alt="Confident woman in a bright personal-brand portrait"
+        width={900}
+        height={1200}
+        className="h-full w-full object-cover object-top"
+        priority
+      />
+    </div>
+  );
+}
 
 export default function HomeTwo() {
   return (
-    <>
-      <section className="relative overflow-hidden bg-[#10151D] text-white">
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(229,9,127,0.84),rgba(53,195,214,0.66)),radial-gradient(circle_at_75%_20%,rgba(217,165,33,0.35),transparent_32%),linear-gradient(135deg,#1b102a,#102a35)]" />
-          <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#10151D] to-transparent" />
-        </div>
-
-        <div className="section-shell relative grid min-h-[78vh] items-center gap-10 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:py-20">
-          <div className="max-w-3xl">
-            <Eyebrow color="white">Women-led community support in Manchester</Eyebrow>
-            <h1 className="max-w-4xl text-[42px] font-semibold leading-[1.03] text-white sm:text-[56px] lg:text-[68px]">
-              Helping every woman feel heard, skilled, and connected.
-            </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-white/86">
-              Women&apos;s Voices supports refugee, asylum-seeking, migrant, and minoritised women through education,
-              wellbeing, advocacy, and leadership development.
-            </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Button href="/contact" variant="solid-cyan">Get support</Button>
-              <Button href="/about" variant="outline-white">About us</Button>
+    <div className="bg-[#40D2CA] px-0 py-0 text-[#151827] sm:px-6 sm:py-10">
+      <div className="mx-auto w-full max-w-[860px] overflow-hidden bg-white shadow-[34px_30px_70px_rgba(24,57,58,0.28)]">
+        <section className="relative bg-[#40D2CA] px-8 pb-0 pt-10 text-white sm:px-16 sm:pt-14">
+          <div className="absolute right-[-180px] top-[-130px] h-[380px] w-[380px] rounded-full bg-[#E5097F]/35 blur-3xl" />
+          <div className="grid items-center gap-8 md:grid-cols-[210px_1fr]">
+            <PortraitCard className="mx-auto h-[255px] w-[190px] md:mx-0" />
+            <div className="relative z-10">
+              <p className="mb-4 text-[13px] font-black uppercase tracking-[0.3em] text-white">I see you</p>
+              <p className="max-w-[400px] text-[13px] font-black leading-5 text-[#151827]">
+                You&apos;re a strong woman building a life, a family, and a future while carrying more than anyone sees.
+              </p>
+              <div className="my-7 h-px w-full bg-white/65" />
+              <p className="mb-4 text-[13px] font-black uppercase tracking-[0.3em] text-white">I hear you</p>
+              <p className="max-w-[420px] text-[13px] font-black leading-5 text-[#151827]">
+                You&apos;re exhausted from juggling appointments, language barriers, work, children, studies, and everyone&apos;s expectations.
+              </p>
+              <div className="mt-7 h-px w-full bg-white/65" />
+              <p className="mt-5 text-3xl font-black leading-none text-[#E8FF65] sm:text-4xl">you&apos;re not alone</p>
             </div>
           </div>
 
-          <div className="grid gap-4 rounded-[28px] border border-white/18 bg-white/12 p-5 shadow-2xl backdrop-blur-md">
-            <div className="rounded-[22px] bg-white p-6 text-[#2D2A35]">
-              <div className="flex items-center gap-3 text-[#E5097F]">
-                <UsersRound size={28} />
-                <span className="text-sm font-bold uppercase tracking-[0.18em]">Community impact</span>
+          <div className="mt-12 grid grid-cols-2 items-end gap-0 md:grid-cols-4">
+            {stats.map((stat) => (
+              <div
+                key={stat.value}
+                className="flex min-h-[190px] flex-col items-center justify-center px-5 pb-8 pt-12 text-center text-white first:rounded-tl-[90px] last:rounded-tr-[90px] md:min-h-[250px] md:rounded-t-[90px]"
+                style={{ backgroundColor: stat.color }}
+              >
+                <span className="text-[48px] font-black leading-none sm:text-[58px]">{stat.value}</span>
+                <p className="mt-4 text-[11px] font-black leading-4">{stat.body}</p>
               </div>
-              <div className="mt-6 grid gap-4">
-                {impactStats.map((stat) => (
-                  <div key={stat.label} className="flex items-end justify-between border-b border-[#F0E8F1] pb-4 last:border-0 last:pb-0">
-                    <span className="text-[40px] font-semibold leading-none text-[#5B2D8E]">{stat.value}</span>
-                    <span className="max-w-[150px] text-right text-sm font-semibold uppercase tracking-wider text-[#5A5663]">{stat.label}</span>
-                  </div>
-                ))}
+            ))}
+          </div>
+        </section>
+
+        <section className="px-8 py-14 text-center sm:px-16">
+          <p className="text-[13px] font-black uppercase tracking-[0.28em] text-[#4868F6]">That feels heavy, right? I know.</p>
+          <p className="mx-auto mt-5 max-w-[620px] text-[12px] font-bold leading-5">
+            Let&apos;s cut to the chase. The women who walk through our doors are not short on strength. They are short on
+            safe space, practical support, and people who understand the whole story.
+          </p>
+          <h1 className="mx-auto mt-7 max-w-[560px] text-[42px] font-black leading-[0.9] text-[#D762D9] sm:text-[56px]">
+            That&apos;s why we created Women&apos;s Voices.
+          </h1>
+          <p className="mt-4 text-[13px] font-black uppercase tracking-[0.16em]">To flip the script for women and mums in Manchester</p>
+
+          <div className="mx-auto mt-8 max-w-[650px] space-y-5 text-left">
+            {programmes.map((item) => (
+              <div key={item} className="grid grid-cols-[24px_1fr] gap-3 text-[12px] font-bold leading-5">
+                <Asterisk className="mt-0.5 text-[#4868F6]" size={18} />
+                <p>{item}. Support that meets women where they are and helps them move forward with confidence.</p>
+              </div>
+            ))}
+          </div>
+
+          <p className="mx-auto mt-8 max-w-[620px] text-[12px] font-black leading-5">
+            I firmly believe it is time for every woman to have access to friendship, learning, wellbeing, and freedom
+            from isolation. Let&apos;s own our stories together.
+          </p>
+
+          <Link
+            href="/contact"
+            className="mt-7 inline-flex rounded-full bg-[#E66BCE] px-8 py-3 text-[11px] font-black uppercase tracking-[0.16em] text-white"
+          >
+            Ready to join Women&apos;s Voices?
+          </Link>
+        </section>
+
+        <section className="px-8 pb-16 sm:px-16">
+          <div className="overflow-hidden rounded-[18px] bg-[#AE91F8] text-white">
+            <div className="px-7 py-9 text-center">
+              <h2 className="text-[36px] font-black leading-none sm:text-[44px]">I know what it&apos;s like...</h2>
+              <p className="mx-auto mt-4 max-w-[470px] text-[13px] font-black leading-5 text-[#151827]">
+                You started your journey because you wanted freedom that came from running something yourself.
+              </p>
+              <p className="mt-5 text-[13px] font-black uppercase tracking-[0.28em]">You&apos;re...</p>
+            </div>
+
+            <div className="grid gap-0 px-7 pb-10 md:grid-cols-3">
+              {signs.map((sign) => (
+                <article key={sign.title} className="border-white/55 py-3 md:border-r md:px-6 md:last:border-r-0">
+                  <h3 className="text-[15px] font-black text-[#4868F6]">{sign.title}</h3>
+                  <ul className="mt-4 space-y-4 text-[11px] font-bold leading-5 text-[#151827]">
+                    {sign.items.map((item) => (
+                      <li key={item}>x {item}</li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
+            </div>
+
+            <div className="bg-[#DDD4FF] px-6 py-5 text-center text-[13px] font-black uppercase tracking-[0.28em] text-[#4868F6]">
+              No judgment here friend.
+            </div>
+          </div>
+        </section>
+
+        <section className="px-8 pb-16 sm:px-16">
+          <h2 className="mx-auto max-w-[650px] text-center text-[42px] font-black leading-[0.93] text-[#4868F6] sm:text-[56px]">
+            I see you, I&apos;ve been you, and I&apos;ve got the community you&apos;ve been craving.
+          </h2>
+
+          <div className="mt-12 grid gap-10 md:grid-cols-[1fr_280px]">
+            <div className="space-y-8">
+              <div>
+                <p className="text-[14px] font-black uppercase tracking-[0.24em] text-[#4868F6]">It is time to rewrite your story</p>
+                <p className="mt-3 text-[12px] font-bold leading-5">
+                  We know rebuilding confidence after isolation, migration, caring demands, or discrimination can feel
+                  impossible. Our programmes help women reclaim their voice one practical step at a time.
+                </p>
+              </div>
+              <div>
+                <p className="text-[14px] font-black uppercase tracking-[0.24em] text-[#4868F6]">Step into your power</p>
+                <p className="mt-3 text-[12px] font-bold leading-5">
+                  Imagine a world where you are supported by women who understand your life, your language, your goals,
+                  and your courage. That is the world we build every week.
+                </p>
+              </div>
+              <div>
+                <p className="text-[14px] font-black uppercase tracking-[0.24em] text-[#4868F6]">Book your breakthrough session now</p>
+                <ul className="mt-3 space-y-2 text-[12px] font-bold leading-5">
+                  <li>x Find the right group for your needs.</li>
+                  <li>x Meet women who understand your experience.</li>
+                  <li>x Leave with one clear next step.</li>
+                </ul>
               </div>
             </div>
-            <Link
-              href="/events"
-              className="group flex items-center justify-between rounded-[22px] bg-[#D9A521] px-5 py-4 text-[#20242E] transition-transform hover:-translate-y-1"
-            >
-              <span className="flex items-center gap-3 text-sm font-bold uppercase tracking-wider">
-                <CalendarDays size={20} />
-                Upcoming events
-              </span>
-              <ArrowRight className="transition-transform group-hover:translate-x-1" size={20} />
-            </Link>
+
+            <div className="space-y-6">
+              <PortraitCard className="h-[270px] w-full rounded-[18px]" />
+              <div className="relative h-[210px] overflow-hidden rounded-[18px] bg-[#AEEAF7]">
+                <div className="absolute bottom-5 left-1/2 h-[70px] w-[160px] -translate-x-1/2 rounded-full bg-[#E8FF65]" />
+                <div className="absolute bottom-16 left-1/2 h-[78px] w-[44px] -translate-x-1/2 rotate-[-18deg] rounded-t-full bg-[#FF4DB8]" />
+                <div className="absolute bottom-20 left-[54%] h-[18px] w-[92px] rounded-full bg-[#D9A521]" />
+                <div className="absolute bottom-7 left-1/2 h-[22px] w-[150px] -translate-x-1/2 rounded bg-[#4868F6]" />
+                <div className="absolute bottom-3 left-1/2 h-[20px] w-[135px] -translate-x-1/2 rounded bg-[#FF8F64]" />
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <AwardStrip />
-
-      <section className="bg-white py-16 lg:py-20">
-        <div className="section-shell">
-          <div className="max-w-2xl">
-            <Eyebrow>What we offer</Eyebrow>
-            <h2 className="text-4xl font-semibold leading-tight text-[#2D2A35] sm:text-5xl">
-              Practical support shaped around women&apos;s real lives.
+        <section className="grid bg-[#F9EEF7] md:grid-cols-[300px_1fr]">
+          <PortraitCard className="min-h-[360px] rounded-none shadow-none" />
+          <div className="px-8 py-12 sm:px-12">
+            <p className="text-[12px] font-black uppercase tracking-[0.28em] text-[#40D2CA]">The movement</p>
+            <h2 className="mt-4 text-[46px] font-black leading-[0.9] text-[#D762D9] sm:text-[58px]">
+              Now we rewrite the rules together.
             </h2>
-          </div>
-
-          <div className="mt-10 grid gap-5 md:grid-cols-3">
-            {featureCards.map(({ title, body, icon: Icon }) => (
-              <article key={title} className="rounded-[24px] border border-[#EEE7EF] bg-[#FDFBFD] p-6">
-                <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#E5097F]/10 text-[#E5097F]">
-                  <Icon size={24} />
-                </div>
-                <h3 className="text-2xl font-semibold text-[#2D2A35]">{title}</h3>
-                <p className="mt-3 leading-7 text-[#5A5663]">{body}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-[#F5F1EA] py-16 lg:py-20">
-        <div className="section-shell">
-          <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
-            <div className="max-w-2xl">
-              <Eyebrow color="cyan">Programmes</Eyebrow>
-              <h2 className="text-4xl font-semibold leading-tight text-[#2D2A35] sm:text-5xl">
-                Routes into confidence, independence, and leadership.
-              </h2>
+            <p className="mt-6 text-[13px] font-bold leading-6">
+              Women&apos;s Voices is a place to learn, heal, connect, and lead. It is practical, warm, direct, and built
+              around the reality of women&apos;s lives.
+            </p>
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+              <Link className="inline-flex items-center justify-center gap-2 rounded-full bg-[#40D2CA] px-6 py-3 text-[11px] font-black uppercase tracking-[0.16em] text-white" href="/contact">
+                Join now <ArrowRight size={14} />
+              </Link>
+              <Link className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-[#D762D9] px-6 py-3 text-[11px] font-black uppercase tracking-[0.16em] text-[#D762D9]" href="/events">
+                See events <CalendarDays size={14} />
+              </Link>
             </div>
-            <Button href="/contact" variant="outline-dark">Join a programme</Button>
           </div>
+        </section>
 
-          <div className="mt-10 grid gap-5 md:grid-cols-2">
-            {SERVICES.map((service) => (
-              <article key={service.id} className="rounded-[24px] bg-white p-6 shadow-sm">
-                <div className="mb-5 h-2 w-20 rounded-full" style={{ backgroundColor: service.iconColor }} />
-                <h3 className="text-2xl font-semibold text-[#2D2A35]">{service.title}</h3>
-                <p className="mt-3 leading-7 text-[#5A5663]">{service.description}</p>
-              </article>
-            ))}
+        <section className="px-8 py-14 sm:px-16">
+          <div className="grid gap-6 md:grid-cols-2">
+            <article className="rounded-[18px] bg-[#40D2CA] p-7 text-white">
+              <Headphones size={30} />
+              <h3 className="mt-6 text-3xl font-black leading-none">Listen, learn, belong.</h3>
+              <p className="mt-4 text-[12px] font-bold leading-5 text-[#151827]">
+                Join conversations that build confidence and reduce isolation.
+              </p>
+            </article>
+            <article className="rounded-[18px] bg-[#E8FF65] p-7 text-[#151827]">
+              <Sparkles size={30} />
+              <h3 className="mt-6 text-3xl font-black leading-none text-[#4868F6]">Your next step starts here.</h3>
+              <p className="mt-4 text-[12px] font-bold leading-5">
+                Tell us what support you need and we&apos;ll help you find the right place to begin.
+              </p>
+            </article>
           </div>
-        </div>
-      </section>
-
-      <PartnersBar />
-      <TestimonialsSlider />
-      <CommunityCta />
-      <BlogSection />
-    </>
+        </section>
+      </div>
+    </div>
   );
 }
